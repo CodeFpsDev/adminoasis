@@ -1,0 +1,1173 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a4f58">
+  <title>Panel · Quinta Oasis</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a4f58'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='Georgia,serif' font-style='italic'%3EO%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+/* ===== Casa Quinta Oasis · landing de clientes ===== */
+:root {
+  --ink: #0a4f58;
+  --ink-2: #0d3a41;
+  --aqua: #19a7b4;
+  --aqua-deep: #0e7f8a;
+  --mist: #dff4f2;
+  --paper: #fbfefd;
+  --line: #cfe4e2;
+  --muted: #4a6a6d;
+  --lapacho: #c92f68;
+  --lapacho-d: #a8234f;
+  --sun: #f5c64a;
+  --danger: #a3262a;
+  --radius: 14px;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: clamp(18px, 5vw, 40px);
+  --nav-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); }
+body {
+  margin: 0; background: var(--paper); color: var(--ink-2);
+  font: 400 1.0625rem/1.6 var(--font-body); -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; margin: 0; color: var(--ink); letter-spacing: -.01em; }
+h2 { font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 800; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 8px; background: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 8px; }
+[hidden] { display: none !important; }
+
+.wrap { width: min(1120px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+.section { padding: clamp(64px, 10vw, 112px) 0; }
+.section--tint { background: var(--mist); }
+.lead { color: var(--muted); max-width: 52ch; margin-top: 14px; font-size: 1.125rem; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 1rem/1 var(--font-body); text-decoration: none; cursor: pointer;
+  padding: 13px 20px; border-radius: 999px; border: 2px solid var(--lapacho);
+  background: var(--lapacho); color: #fff; min-height: 46px;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.btn:hover { background: var(--lapacho-d); border-color: var(--lapacho-d); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn--small { padding: 10px 16px; min-height: 40px; font-size: .95rem; }
+.btn--lg { padding: 16px 28px; font-size: 1.0625rem; min-height: 54px; }
+.btn--block { width: 100%; margin-top: 18px; }
+.btn--ghost { background: transparent; border-color: rgba(255, 255, 255, .7); color: #fff; }
+.btn--ghost:hover { background: rgba(255, 255, 255, .14); border-color: #fff; }
+.btn--outline { background: transparent; color: var(--ink); border-color: var(--ink); margin-top: 22px; }
+.btn--outline:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* ---------- Navegación ---------- */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--nav-h); transition: background-color .25s, box-shadow .25s; }
+.nav.is-solid, .nav.is-open { background: rgba(10, 79, 88, .97); box-shadow: 0 2px 18px rgba(6, 40, 46, .25); }
+.nav__inner { height: 100%; width: min(1120px, 100% - 2 * var(--gutter)); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; text-decoration: none; }
+.brand__logo { height: 40px; width: auto; }
+.nav__toggle { background: none; border: 0; color: #fff; padding: 8px; cursor: pointer; border-radius: 8px; }
+.nav__menu {
+  position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--ink); padding: 8px var(--gutter) 24px;
+  display: none; flex-direction: column; gap: 2px;
+}
+.nav.is-open .nav__menu { display: flex; }
+.nav__menu a:not(.btn) { color: #fff; text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .14); font-weight: 500; }
+.nav__menu .btn { margin-top: 16px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden; color: #fff;
+  background: linear-gradient(165deg, #083f47 0%, var(--aqua-deep) 70%, #1396a3 100%);
+  padding: calc(var(--nav-h) + clamp(48px, 9vw, 110px)) 0 clamp(110px, 14vw, 170px);
+}
+.hero__water {
+  position: absolute; inset: -20%; opacity: .55; pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140' viewBox='0 0 220 140'%3E%3Cpath d='M0 40c27-26 55-26 82 0s55 26 82 0 41-20 56-8M0 110c27-26 55-26 82 0s55 26 82 0 41-20 56-8' fill='none' stroke='%2367d3d6' stroke-opacity='.35' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Cpath d='M0 60c40-34 80-34 120 0s80 34 120 0 40-18 60-4M0 160c40-34 80-34 120 0s80 34 120 0 40-18 60-4' fill='none' stroke='%23ffffff' stroke-opacity='.16' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 220px 140px, 300px 200px;
+  animation: shimmer 28s linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 440px 140px, -600px 200px; }
+}
+.hero__content { position: relative; }
+.hero__title { color: #fff; font-size: clamp(2.5rem, 8.2vw, 5.6rem); font-weight: 800; max-width: 14ch; letter-spacing: -.025em; }
+.hero__lead { margin-top: 22px; max-width: 46ch; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: #e8fbfa; }
+.hero__actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+.facts { margin: clamp(36px, 6vw, 64px) 0 0; display: grid; gap: 16px 36px; grid-template-columns: 1fr; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .28); }
+.facts dt { font-size: .875rem; color: #bfeceb; }
+.facts dd { margin: 2px 0 0; font: 700 1.15rem/1.3 var(--font-display); }
+.hero__edge { position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(40px, 6vw, 80px); }
+
+/* ---------- La casa ---------- */
+.split { display: grid; gap: 36px; }
+.split__intro p { margin-top: 18px; color: var(--muted); max-width: 46ch; }
+.amenities { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px 28px; grid-template-columns: 1fr; align-content: start; }
+.amenities li { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+.amenities svg { flex: none; color: var(--aqua-deep); }
+
+/* ---------- Galería ---------- */
+.mosaic { margin-top: 36px; display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(130px, 34vw, 220px); }
+.tile { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--aqua); }
+.tile { background: linear-gradient(150deg, #19a7b4, #0a4f58); }
+/* Celular: foto 1, 5 y 6 ocupan todo el ancho; la foto 2 (vertical) es alta */
+.tile:nth-child(1), .tile:nth-child(5), .tile:nth-child(6) { grid-column: span 2; grid-row: span 2; }
+.tile:nth-child(2) { grid-row: span 2; }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile:nth-child(2) img { object-position: 50% 35%; }
+.tile__btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; text-align: left; }
+.tile__btn:disabled { cursor: default; }
+.tile__btn:focus-visible { outline-offset: -4px; }
+.tile__ph { position: absolute; inset: auto 14px 12px 14px; font-size: .85rem; color: rgba(255, 255, 255, .85); }
+
+/* ---------- Visor de fotos ---------- */
+.lightbox { position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center; padding: 64px 14px 56px; background: rgba(4, 26, 30, .985); }
+.lb__stage { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 100%; }
+.lb__stage img { display: block; max-width: 100%; max-height: calc(100vh - 150px); width: auto; height: auto; border-radius: 10px; }
+.lb__stage figcaption { color: #dff4f2; font-size: .95rem; text-align: center; max-width: 60ch; }
+.lb__btn { position: absolute; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .16); color: #fff; font-size: 1.9rem; line-height: 1; cursor: pointer; }
+.lb__btn:hover { background: rgba(255, 255, 255, .28); }
+.lb__close { top: 12px; right: 12px; }
+.lb__nav { top: 50%; translate: 0 -50%; width: 52px; height: 52px; }
+.lb__prev { left: 10px; }
+.lb__next { right: 10px; }
+.lb__count { position: absolute; top: 24px; left: 18px; margin: 0; color: #bfeceb; font-size: .9rem; }
+@media (min-width: 960px) {
+  .lightbox { padding: 72px 96px 56px; }
+  .lb__prev { left: 24px; }
+  .lb__next { right: 24px; }
+}
+
+/* ---------- Pasos ---------- */
+.steps { list-style: none; counter-reset: s; margin: 40px 0 0; padding: 0; display: grid; gap: 32px; }
+.steps li { display: grid; grid-template-columns: 56px 1fr; gap: 4px 18px; }
+.steps__n {
+  grid-row: span 2; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: #fff;
+  display: grid; place-items: center; font: 800 1.5rem/1 var(--font-display);
+}
+.steps h3 { align-self: end; }
+.steps p { color: var(--muted); max-width: 46ch; }
+
+/* ---------- Reservar ---------- */
+.section--water { background: linear-gradient(180deg, var(--mist), #c5ebe8); }
+.booking { margin-top: 32px; display: grid; gap: 20px; }
+.panel { background: #fff; border-radius: 20px; padding: clamp(16px, 3.5vw, 28px); box-shadow: 0 10px 34px rgba(10, 79, 88, .12); }
+
+.cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cal__title { font: 700 1.2rem/1 var(--font-display); color: var(--ink); }
+.cal__nav { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--ink); }
+.cal__nav:hover:not(:disabled) { background: var(--mist); }
+.cal__nav:disabled { opacity: .35; cursor: default; }
+.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal__dow { text-align: center; font-size: .78rem; color: var(--muted); padding: 6px 0; font-weight: 600; }
+.day {
+  aspect-ratio: 1; min-height: 40px; border: 1.5px solid transparent; border-radius: 12px; background: var(--paper);
+  font: 600 1rem/1 var(--font-body); color: var(--ink-2); cursor: pointer; padding: 0;
+}
+.day--free:hover { background: var(--mist); border-color: var(--aqua); }
+.day--past { color: #a9bdbf; background: transparent; cursor: default; }
+.day--busy { background: #f6dde3; color: var(--danger); text-decoration: line-through; cursor: not-allowed; }
+.day--wait { background: #fdf0c4; color: #7a5600; cursor: not-allowed; }
+.day--sel { background: var(--ink); color: #fff; border-color: var(--ink); }
+.day--edge { background: var(--lapacho); border-color: var(--lapacho); }
+.day--today { box-shadow: inset 0 0 0 2px var(--aqua); }
+
+.legend { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 16px 0 0; padding: 0; font-size: .875rem; color: var(--muted); }
+.legend li { display: flex; align-items: center; gap: 7px; }
+.dot { width: 14px; height: 14px; border-radius: 5px; border: 1.5px solid var(--line); background: var(--paper); }
+.dot--sel { background: var(--ink); border-color: var(--ink); }
+.dot--wait { background: #fdf0c4; border-color: #ecd27c; }
+.dot--busy { background: #f6dde3; border-color: #e4a9b6; }
+
+.summary { background: var(--mist); border-radius: 12px; padding: 12px 14px; font-weight: 600; color: var(--ink); min-height: 48px; }
+.summary--empty { background: var(--paper); border: 1.5px dashed var(--line); color: var(--muted); font-weight: 400; }
+label { display: block; font-weight: 600; font-size: .95rem; margin: 18px 0 6px; color: var(--ink); }
+input { width: 100%; font: inherit; color: var(--ink-2); padding: 13px 14px; min-height: 48px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; }
+input:focus-visible { outline: 3px solid var(--sun); outline-offset: 0; border-color: var(--aqua-deep); }
+.hint { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+.notice { margin-top: 16px; border-radius: 12px; padding: 14px 16px; font-size: .95rem; }
+.notice--ok { background: #dff4e8; border: 1px solid #a8d9bb; color: #14502e; }
+.notice--err { background: #fbe4e6; border: 1px solid #efb2b8; color: #7d1d22; }
+.notice--demo { background: #fff6d6; border: 1px solid #ecd27c; color: #5c4300; }
+.notice .btn { margin-top: 12px; background: #1f9d55; border-color: #1f9d55; }
+.notice .btn:hover { background: #17804a; border-color: #17804a; }
+
+/* ---------- Ubicación ---------- */
+.mapbox { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 5 / 3; }
+.mapbox svg { width: 100%; height: 100%; }
+
+/* ---------- Preguntas ---------- */
+.faq { max-width: 820px; }
+.faq h2 { margin-bottom: 24px; }
+details { border-bottom: 1.5px solid rgba(10, 79, 88, .2); }
+summary { cursor: pointer; list-style: none; padding: 20px 36px 20px 0; font: 700 1.15rem/1.3 var(--font-display); color: var(--ink); position: relative; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 50%; translate: 0 -50%; font-size: 1.6rem; font-weight: 500; transition: rotate .2s; }
+details[open] summary::after { rotate: 45deg; }
+details p { padding: 0 0 22px; color: var(--muted); max-width: 60ch; }
+
+/* ---------- Pie y WhatsApp ---------- */
+.footer { background: var(--ink-2); color: #bfdcdc; padding: 32px 0 96px; }
+.footer__inner { display: flex; flex-direction: column; gap: 6px; }
+.footer strong { color: #fff; font: 700 1.2rem/1 var(--font-display); }
+.footer__credit { margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .16); font-size: .875rem; color: #9fc3c4; }
+.footer a { color: #fff; }
+.wa-wrap { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.wa {
+  display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; font: 600 1rem/1 var(--font-body);
+  background: #1f9d55; color: #fff; padding: 14px; border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+}
+.wa-menu { width: min(290px, calc(100vw - 32px)); background: #fff; border-radius: 18px; padding: 14px; box-shadow: 0 12px 36px rgba(6, 40, 46, .3); }
+.wa-menu__title { font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.wa-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; padding: 13px 14px;
+  border-radius: 12px; background: #e6f6ed; color: #14502e; text-decoration: none; font-weight: 600; min-height: 48px;
+}
+.wa-link small { font-weight: 500; color: #3f6b50; font-size: .85rem; }
+.wa-link:hover { background: #d1efdd; }
+.modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(6, 40, 46, .62); }
+.modal__box {
+  position: relative; width: min(440px, 100%); max-height: calc(100vh - 32px); overflow: auto;
+  background: #fff; border-radius: 22px; padding: 28px 22px 22px; box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+  animation: pop .22s ease-out;
+}
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+.modal__box h3 { font-size: 1.5rem; padding-right: 36px; }
+.modal__box p { margin-top: 12px; color: var(--muted); }
+.modal__box .modal__ask { color: var(--ink); font-weight: 600; margin-top: 18px; }
+.modal__close {
+  position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--mist); color: var(--ink); font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.modal__close:hover { background: #c5ebe8; }
+.modal__contacts { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.modal__box .modal__demo { background: #fff6d6; border: 1px solid #ecd27c; color: #5c4300; border-radius: 12px; padding: 10px 12px; font-size: .9rem; }
+.btn--wa { background: #1f9d55; border-color: #1f9d55; }
+.btn--wa:hover { background: #17804a; border-color: #17804a; }
+.notice .btn + .btn { margin-left: 8px; }
+.wa span { display: none; }
+.wa:hover { background: #17804a; }
+
+/* ---------- Tablet ---------- */
+@media (min-width: 640px) {
+  .facts { grid-template-columns: repeat(3, auto); justify-content: start; }
+  .amenities { grid-template-columns: 1fr 1fr; }
+  .mosaic { --row: clamp(120px, 19vw, 210px); grid-template-columns: repeat(4, 1fr); grid-auto-rows: auto; grid-template-rows: var(--row) var(--row) calc(var(--row) * 1.5); }
+  .tile:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .tile:nth-child(2) { grid-column: 3; grid-row: 1 / 3; }
+  .tile:nth-child(3) { grid-column: 4; grid-row: 1; }
+  .tile:nth-child(4) { grid-column: 4; grid-row: 2; }
+  .tile:nth-child(5) { grid-column: 1 / 3; grid-row: 3; }
+  .tile:nth-child(6) { grid-column: 3 / 5; grid-row: 3; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .steps li { grid-template-columns: 1fr; gap: 12px; }
+  .steps__n { grid-row: auto; }
+  .steps h3 { align-self: auto; }
+  .footer__inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  .wa { padding: 14px 20px 14px 16px; }
+  .wa span { display: inline; }
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 960px) {
+  .nav__toggle { display: none; }
+  .nav__menu { position: static; display: flex; flex-direction: row; align-items: center; gap: 28px; background: none; padding: 0; }
+  .nav__menu a:not(.btn) { border: 0; padding: 6px 0; font-size: .98rem; opacity: .92; }
+  .nav__menu a:not(.btn):hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+  .nav__menu .btn { margin: 0; }
+  .split { grid-template-columns: 5fr 6fr; gap: 72px; align-items: start; }
+  .booking { grid-template-columns: 6fr 5fr; gap: 28px; align-items: start; }
+  .mosaic { --row: 210px; }
+}
+
+/* ---------- Preferencias de movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__water, .modal__box { animation: none; }
+  * { transition-duration: .01ms !important; }
+}
+
+/* ===== Panel de los dueños · Quinta Oasis ===== */
+body.admin { background: #eaf5f4; min-height: 100vh; }
+html { scroll-padding-top: 76px; }
+
+/* ---------- Barra superior ---------- */
+.atop { position: sticky; top: 0; z-index: 30; background: var(--ink); color: #fff; box-shadow: 0 2px 14px rgba(6, 40, 46, .22); }
+.atop__in { width: min(1200px, 100% - 2 * var(--gutter)); margin-inline: auto; height: 60px; display: flex; align-items: center; gap: 14px; }
+.atop__logo { height: 34px; width: auto; }
+.atop__title { font: 700 1rem/1 var(--font-display); color: #bfeceb; }
+.atop__user { margin-left: auto; font-size: .875rem; color: #bfeceb; display: none; }
+.atop .btn { margin-left: auto; }
+.atop__user:not(:empty) + .btn { margin-left: 0; }
+
+.awrap { width: min(1200px, 100% - 2 * var(--gutter)); margin: 20px auto 96px; }
+.adm-demo { margin: 0 0 16px; }
+
+/* ---------- Ingreso ---------- */
+.login { max-width: 420px; margin: clamp(24px, 8vh, 80px) auto 0; background: #fff; border-radius: 20px; padding: clamp(22px, 5vw, 32px); box-shadow: 0 10px 34px rgba(10, 79, 88, .12); }
+.login h1 { font-size: 1.7rem; font-weight: 800; }
+.login > p { margin-top: 8px; color: var(--muted); }
+.login__demo { margin-top: 18px; background: #fff6d6; border: 1px solid #ecd27c; color: #5c4300; border-radius: 12px; padding: 10px 12px; font-size: .9rem; }
+
+/* ---------- Pestañas del celular ---------- */
+.segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: #d3ebe8; border-radius: 14px; margin-bottom: 16px; }
+.segmented button { border: 0; background: transparent; border-radius: 10px; padding: 11px 8px; min-height: 46px; font: 600 1rem/1 var(--font-body); color: var(--ink); cursor: pointer; }
+.segmented button.is-on { background: #fff; box-shadow: 0 1px 6px rgba(10, 79, 88, .18); }
+.count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; margin-left: 4px; border-radius: 999px; background: var(--lapacho); color: #fff; font-size: .8rem; }
+
+/* ---------- Estructura ---------- */
+.agrid { display: grid; gap: 16px; }
+#app[data-pane="requests"] #paneCalendar { display: none; }
+#app[data-pane="calendar"] #paneRequests { display: none; }
+.apanel { background: #fff; border-radius: 20px; padding: clamp(16px, 3.5vw, 26px); box-shadow: 0 6px 24px rgba(10, 79, 88, .09); min-width: 0; }
+.apanel h2 { font-size: 1.35rem; font-weight: 800; }
+
+/* ---------- Pedidos ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0; }
+.stat { background: var(--mist); border-radius: 14px; padding: 12px 12px 10px; min-width: 0; }
+.stat b { display: block; font: 800 1.3rem/1.15 var(--font-display); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stat span { font-size: .78rem; color: var(--muted); line-height: 1.25; display: block; margin-top: 2px; }
+
+.toolbar { display: grid; gap: 10px; margin-bottom: 6px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px; min-height: 40px; font: 500 .92rem/1 var(--font-body); color: var(--ink-2); cursor: pointer; }
+.chip.is-on { background: var(--ink); border-color: var(--ink); color: #fff; }
+#search { min-height: 44px; }
+
+.req { padding: 18px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }
+.req:last-child { border-bottom: 0; }
+.req.flash { animation: flash 1.6s ease-out; }
+@keyframes flash { 0%, 40% { background: #fff3c4; box-shadow: 0 0 0 10px #fff3c4; } 100% { background: transparent; box-shadow: 0 0 0 10px transparent; } }
+.req__top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.req h3 { font-size: 1.15rem; }
+.req__meta { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.req__dates { margin-top: 10px; font: 700 1.05rem/1.3 var(--font-display); color: var(--ink); }
+.req__dates span { font: 500 .9rem var(--font-body); color: var(--muted); }
+.req__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.req__actions .btn { margin: 0; }
+.badge { font-size: .78rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+.badge--pending { background: #fdf0c4; color: #7a5600; }
+.badge--confirmed { background: #d9f1e3; color: #14502e; }
+.badge--rejected { background: #e8eeee; color: #55696b; }
+.btn--wa { gap: 8px; }
+.btn--dark { background: var(--ink); border-color: var(--ink); }
+.btn--dark:hover { background: var(--ink-2); border-color: var(--ink-2); }
+.btn--danger { background: #fff; color: var(--danger); border-color: #e4a9b6; }
+.btn--danger:hover { background: #fbe4e6; border-color: var(--danger); color: var(--danger); }
+.btn--quiet { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn--quiet:hover { background: var(--mist); border-color: var(--aqua); color: var(--ink); }
+
+.empty { text-align: center; color: var(--muted); padding: 36px 12px 28px; }
+.empty b { display: block; color: var(--ink); font: 700 1.1rem var(--font-display); margin-bottom: 4px; }
+
+/* ---------- Calendario ---------- */
+.apanel .cal { margin-top: 14px; }
+.day--blocked { background: #f6dde3; color: var(--danger); border-color: #efc2cb; text-decoration: line-through; }
+.day--blocked:hover { background: #f0c9d3; }
+.day--pending { background: #fdf0c4; color: #7a5600; position: relative; }
+.day--confirmed { background: #1f9d55; color: #fff; position: relative; }
+.day--pending::after, .day--confirmed::after { content: ""; position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; border-radius: 50%; }
+.day--pending::after { background: var(--lapacho); }
+.day--confirmed::after { background: #fff; }
+.day--free { cursor: pointer; }
+.dot--booked { background: #1f9d55; border-color: #1f9d55; }
+.apanel .hint { margin-top: 12px; }
+
+.range { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.range h3 { font-size: 1.05rem; }
+.range__row > div{min-width:0}.range__row input{min-width:0;width:100%;max-width:100%}
+.range__row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.range__row label { margin-top: 12px; }
+.range__btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.range__btns .btn { margin: 0; }
+
+/* ---------- Confirmaciones y avisos ---------- */
+.dlg { border: 0; border-radius: 22px; padding: 26px 22px 20px; width: min(440px, calc(100% - 32px)); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); color: var(--ink-2); }
+.dlg::backdrop { background: rgba(6, 40, 46, .62); }
+.dlg h2 { font-size: 1.4rem; }
+.dlg p { margin-top: 10px; color: var(--muted); }
+.dlg__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 22px; }
+.dlg__btns .btn { margin: 0; flex: 1 1 140px; }
+.dlg.is-danger #dlgOk { background: var(--danger); border-color: var(--danger); }
+
+.toast {
+  position: fixed; left: 50%; bottom: 20px; translate: -50% 0; z-index: 80; width: max-content; max-width: calc(100vw - 32px);
+  display: flex; align-items: center; gap: 14px; background: var(--ink-2); color: #fff; padding: 13px 16px; border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3); font-size: .95rem;
+}
+.toast.is-error { background: var(--danger); }
+.toast button { background: none; border: 0; color: var(--sun); font: 700 .95rem var(--font-body); cursor: pointer; padding: 6px 4px; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 640px) {
+  .stat b { font-size: 1.7rem; }
+  .stat { padding: 14px 14px 12px; }
+  .toolbar { grid-template-columns: 1fr 260px; align-items: center; }
+  .atop__user { display: block; }
+}
+@media (min-width: 960px) {
+  .segmented { display: none; }
+  #app[data-pane] #paneCalendar, #app[data-pane] #paneRequests { display: block; }
+  .agrid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px; align-items: start; }
+  #paneCalendar { position: sticky; top: 80px; }
+}
+@media (prefers-reduced-motion: reduce) { .req.flash { animation: none; background: #fff3c4; } }
+
+.atop__logo{font:italic 800 1.7rem/1 var(--font-display);color:#fff;letter-spacing:-.02em;height:auto}
+.boot{text-align:center;color:var(--muted);margin:clamp(40px,14vh,120px) 0}
+</style>
+</head>
+<body class="admin">
+  <header class="atop">
+    <div class="atop__in">
+      <span class="atop__logo">Oasis</span>
+      <span class="atop__title">Panel de la quinta</span>
+      <span class="atop__user" id="userEmail"></span>
+      <button type="button" class="btn btn--ghost btn--small" id="logout" hidden>Salir</button>
+    </div>
+  </header>
+
+  <main class="awrap">
+    <!-- Cargando -->
+    <p class="boot" id="boot" role="status">Cargando…</p>
+
+    <!-- Ingreso -->
+    <section class="login" id="login" hidden>
+      <h1>Panel de la quinta</h1>
+      <p>Escribí la clave para ver los pedidos y manejar los días libres.</p>
+      <form id="loginForm" novalidate>
+        <input id="email" type="text" name="username" value="panel@quinta-oasis.com" autocomplete="username" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <label for="pw">Clave</label>
+        <input id="pw" type="password" autocomplete="current-password" required>
+        <button class="btn btn--lg btn--block" type="submit">Entrar</button>
+        <div id="loginMsg" role="alert"></div>
+      </form>
+      <p class="login__demo" id="loginDemo" hidden><strong>Modo demostración:</strong> escribí cualquier clave para ver cómo funciona.</p>
+    </section>
+
+    <!-- Panel -->
+    <div id="app" hidden data-pane="requests">
+      <p class="notice notice--demo adm-demo" id="demoBanner" hidden><strong>Modo demostración:</strong> los pedidos son de ejemplo y los cambios se guardan solo en este navegador.</p>
+
+      <div class="segmented" id="seg" role="tablist" aria-label="Secciones">
+        <button type="button" role="tab" class="is-on" data-pane="requests" aria-selected="true">Pedidos <span class="count" id="segCount" hidden></span></button>
+        <button type="button" role="tab" data-pane="calendar" aria-selected="false">Calendario</button>
+      </div>
+
+      <div class="agrid">
+        <!-- Pedidos -->
+        <section class="apanel" id="paneRequests" aria-label="Pedidos de clientes">
+          <h2>Pedidos de clientes</h2>
+          <div class="stats">
+            <div class="stat"><b id="nPending">0</b><span>Esperando pago</span></div>
+            <div class="stat"><b id="nConfirmed">0</b><span>Reservas confirmadas</span></div>
+            <div class="stat"><b id="nextDate">—</b><span>Próxima reserva</span></div>
+          </div>
+
+          <div class="toolbar">
+            <div class="chips" id="chips" role="group" aria-label="Filtrar pedidos">
+              <button type="button" class="chip is-on" data-f="pending">Esperando pago</button>
+              <button type="button" class="chip" data-f="confirmed">Confirmadas</button>
+              <button type="button" class="chip" data-f="rejected">Rechazadas</button>
+              <button type="button" class="chip" data-f="all">Todas</button>
+            </div>
+            <label class="sr" for="search">Buscar por nombre o teléfono</label>
+            <input id="search" type="search" placeholder="Buscar cliente" autocomplete="off">
+          </div>
+
+          <div id="list"></div>
+        </section>
+
+        <!-- Calendario -->
+        <section class="apanel" id="paneCalendar" aria-label="Calendario de disponibilidad">
+          <h2>Días libres y ocupados</h2>
+          <div id="calendar" class="cal"></div>
+          <ul class="legend">
+            <li><i class="dot dot--free"></i>Libre</li>
+            <li><i class="dot dot--busy"></i>Ocupado por vos</li>
+            <li><i class="dot dot--wait"></i>Pedido esperando pago</li>
+            <li><i class="dot dot--booked"></i>Reservado</li>
+          </ul>
+          <p class="hint">Tocá un día libre para marcarlo como ocupado, y tocalo de nuevo para liberarlo. Si el día tiene un pedido, te lleva a ese pedido.</p>
+
+          <div class="range">
+            <h3>Marcar varios días juntos</h3>
+            <div class="range__row">
+              <div><label for="from">Desde</label><input id="from" type="date"></div>
+              <div><label for="to">Hasta</label><input id="to" type="date"></div>
+            </div>
+            <div class="range__btns">
+              <button type="button" class="btn btn--small" id="blockRange">Marcar ocupados</button>
+              <button type="button" class="btn btn--outline btn--small" id="freeRange">Marcar libres</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="dlg" id="dlg" aria-labelledby="dlgTitle">
+    <form method="dialog">
+      <h2 id="dlgTitle"></h2>
+      <p id="dlgText"></p>
+      <div class="dlg__btns">
+        <button type="submit" class="btn btn--outline" value="cancel">Cancelar</button>
+        <button type="submit" class="btn" id="dlgOk" value="ok">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toastText"></span>
+    <button type="button" id="toastAction" hidden></button>
+  </div>
+
+  <script>
+/* ==========================================================
+   Datos editables de Quinta Oasis.
+   Cambiá los textos de acá y la página se actualiza sola.
+   Lo marcado con "CONFIRMAR" son datos de ejemplo.
+   ========================================================== */
+window.OASIS = {
+  adminEmail: "panel@quinta-oasis.com",
+  firebase: {
+    apiKey: "AIzaSyDj89NP3KbcXg1iCi4z6uzMNBG1qKY4MgU",
+    authDomain: "quinta-oasis.firebaseapp.com",
+    projectId: "quinta-oasis",
+    storageBucket: "quinta-oasis.firebasestorage.app",
+    messagingSenderId: "607676480964",
+    appId: "1:607676480964:web:fc84a8b4e446be5d91b891",
+  },
+  name: "Quinta Oasis",
+
+  // Personas con quienes los clientes pueden reservar por WhatsApp.
+  // El número se escribe como siempre (con 0 al inicio); la página agrega el código de país.
+  contacts: [
+    { name: "Juanes", phone: "0973 510 568" },
+    { name: "María", phone: "0975 187 964" },
+  ],
+
+  // Prefijo que se agrega a los números que empiezan con 0 (Paraguay = 595)
+  countryCode: "595",
+  timezone: "America/Asuncion",
+
+  // CONFIRMAR: capacidad y precio
+  capacity: 150,
+  priceText: "Consultá el precio por WhatsApp",
+
+  // Días seguidos que se pueden pedir
+  maxDays: 14,
+
+  // Dirección que se muestra y enlace de Google Maps
+  address: "Ciudad de Ayolas, Misiones",
+  mapsUrl: "https://maps.app.goo.gl/CtLxhTouVb7Tz79m7?g_st=iw",
+
+  // Comodidades que se ven en las fotos. Agregá o quitá las que correspondan
+  // (por ejemplo baños, estacionamiento, heladera).
+  amenities: [
+    "Pileta",
+    "Reposeras y sombrillas",
+    "Quincho techado",
+    "Parrilla de ladrillo",
+    "Cocina con mesada y bacha",
+    "Mesa larga de madera y sillas",
+    "Ventiladores de techo",
+    "Jardín con césped",
+    "Wi-Fi",
+  ],
+
+};
+
+</script>
+  <script>
+/* ==========================================================
+   Servicio de datos del panel de los dueños.
+   Ahora funciona en MODO DEMOSTRACIÓN: los datos son de ejemplo y se
+   guardan solo en este navegador. En el paso 3 se reemplaza este archivo
+   por la versión con Firebase; el panel (admin.js) no cambia porque solo
+   usa estas funciones:
+
+     onAuth(cb)            cb(user | null) al entrar o salir
+     signIn(email, clave)  entra
+     signOut()             sale
+     subscribe(cb)         cb({ requests, days }) ahora y en cada cambio
+     setBlocked(fechas, bloqueado)  marca o libera días  -> { changed, skipped }
+     setStatus(id, estado)          'pending' | 'confirmed' | 'rejected'
+     remove(id)                     borra un pedido
+   ========================================================== */
+(function () {
+  "use strict";
+  const cfg = window.OASIS;
+  const KEY = "oasis-admin-demo-v1";
+
+  const todayStr = () => new Date().toLocaleDateString("en-CA", { timeZone: cfg.timezone });
+  const addDays = (s, n) => new Date(Date.parse(s + "T00:00:00Z") + n * 86400000).toISOString().slice(0, 10);
+  const range = (a, b) => {
+    const out = [];
+    for (let t = Date.parse(a + "T00:00:00Z"), e = Date.parse(b + "T00:00:00Z"); t <= e; t += 86400000) {
+      out.push(new Date(t).toISOString().slice(0, 10));
+    }
+    return out;
+  };
+
+  function seed() {
+    const t = todayStr();
+    const ago = (min) => new Date(Date.now() - min * 60000).toISOString();
+    return {
+      user: null,
+      blocked: range(addDays(t, 22), addDays(t, 24)),
+      requests: [
+        { id: "demo1", name: "María Fernández", phone: "595981456123", guests: 15, checkIn: addDays(t, 8), checkOut: addDays(t, 9), status: "pending", createdAt: ago(20) },
+        { id: "demo2", name: "Carlos Benítez", phone: "595971222333", guests: 40, checkIn: addDays(t, 15), checkOut: addDays(t, 15), status: "pending", createdAt: ago(190) },
+        { id: "demo3", name: "Lucía Gómez", phone: "595985111222", guests: 25, checkIn: addDays(t, 3), checkOut: addDays(t, 4), status: "confirmed", createdAt: ago(2900) },
+        { id: "demo4", name: "Pedro Ruiz", phone: "595991333444", guests: 60, checkIn: addDays(t, 11), checkOut: addDays(t, 11), status: "rejected", createdAt: ago(7200) },
+      ],
+    };
+  }
+
+  let state;
+  try { state = JSON.parse(localStorage.getItem(KEY)); } catch (_) { state = null; }
+  if (!state || !Array.isArray(state.requests) || !Array.isArray(state.blocked)) state = seed();
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) { /* sin almacenamiento: queda en memoria */ } }
+
+  const authListeners = new Set();
+  const dataListeners = new Set();
+
+  /* Mapa de días: confirmada > pendiente > bloqueado */
+  function buildDays() {
+    const days = {};
+    state.blocked.forEach((d) => { days[d] = { state: "blocked" }; });
+    ["pending", "confirmed"].forEach((st) => {
+      state.requests.filter((r) => r.status === st).forEach((r) => {
+        range(r.checkIn, r.checkOut).forEach((d) => { days[d] = { state: st, requestId: r.id }; });
+      });
+    });
+    return days;
+  }
+  function snapshot() {
+    const requests = [...state.requests].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map((r) => ({ ...r }));
+    return { requests, days: buildDays() };
+  }
+  function emit() { const s = snapshot(); dataListeners.forEach((cb) => cb(s)); }
+  function fail(code, message, extra) { return Object.assign(new Error(message), { code }, extra); }
+
+  const demoService = {
+    demo: true,
+    today: todayStr,
+
+    onAuth(cb) {
+      authListeners.add(cb);
+      cb(state.user);
+      return () => authListeners.delete(cb);
+    },
+    async signIn(password) {
+      if (!password) throw fail("auth/invalid", "Escribí la clave.");
+      state.user = { email: "" };
+      save();
+      authListeners.forEach((cb) => cb(state.user));
+    },
+    async signOut() {
+      state.user = null;
+      save();
+      authListeners.forEach((cb) => cb(null));
+    },
+
+    subscribe(cb) {
+      dataListeners.add(cb);
+      cb(snapshot());
+      return () => dataListeners.delete(cb);
+    },
+
+    async setBlocked(dates, blocked) {
+      const taken = buildDays();
+      const set = new Set(state.blocked);
+      let changed = 0, skipped = 0;
+      dates.forEach((d) => {
+        const x = taken[d];
+        if (x && x.state !== "blocked") { skipped++; return; }
+        if (blocked && !set.has(d)) { set.add(d); changed++; }
+        else if (!blocked && set.has(d)) { set.delete(d); changed++; }
+      });
+      state.blocked = [...set].sort();
+      save(); emit();
+      return { changed, skipped };
+    },
+
+    async setStatus(id, status) {
+      const r = state.requests.find((x) => x.id === id);
+      if (!r) throw fail("not-found", "No se encontró el pedido.");
+      if (status !== "rejected") {
+        const mine = range(r.checkIn, r.checkOut);
+        const blocked = new Set(state.blocked);
+        const others = state.requests.filter((x) => x.id !== id && (x.status === "confirmed" || (status === "pending" && x.status === "pending")));
+        for (const d of mine) {
+          const other = others.find((x) => d >= x.checkIn && d <= x.checkOut);
+          if (blocked.has(d) || other) {
+            throw fail("conflict", `No se puede: el día ${d.split("-").reverse().join("/")} ya está ocupado o lo tiene otro pedido.`, { date: d });
+          }
+        }
+      }
+      r.status = status;
+      save(); emit();
+    },
+
+    async remove(id) {
+      state.requests = state.requests.filter((x) => x.id !== id);
+      save(); emit();
+    },
+  };
+  /* ---------- Firebase (base de datos real) ---------- */
+  function firebaseService() {
+    const fbCfg = cfg.firebase;
+    const base = "https://www.gstatic.com/firebasejs/10.14.1/";
+    let ready = null;
+    const load = () => ready || (ready = Promise.all([
+      import(base + "firebase-app.js"), import(base + "firebase-firestore.js"), import(base + "firebase-auth.js"),
+    ]).then(([appM, fs, au]) => {
+      const app = appM.initializeApp(fbCfg);
+      return { fs, au, db: fs.getFirestore(app), auth: au.getAuth(app) };
+    }));
+
+    let reqCache = [], dayCache = {};
+    const authMsg = (code) => ({
+      "auth/invalid-credential": "La clave no es correcta.",
+      "auth/wrong-password": "La clave no es correcta.",
+      "auth/user-not-found": "La clave no es correcta.",
+      "auth/invalid-login-credentials": "La clave no es correcta.",
+      "auth/too-many-requests": "Demasiados intentos. Esperá unos minutos y probá de nuevo.",
+      "auth/network-request-failed": "Sin conexión. Revisá tu internet y probá de nuevo.",
+    }[code] || "No se pudo ingresar. Probá de nuevo.");
+    const writeFail = (err) => {
+      console.error(err);
+      return fail(err && err.code === "permission-denied" ? "denied" : "failed", "No se pudo guardar el cambio.");
+    };
+    const conflict = (d) => fail("conflict", `No se puede: el día ${d.split("-").reverse().join("/")} ya está ocupado o lo tiene otro pedido.`, { date: d });
+
+    return {
+      demo: false,
+      today: todayStr,
+
+      onAuth(cb, onError) {
+        let off = () => {}, gone = false;
+        load().then(({ au, auth }) => {
+          if (gone) return;
+          off = au.onAuthStateChanged(auth, (u) => cb(u ? { email: "" } : null));
+        }).catch((err) => { console.error(err); if (onError) onError(err); });
+        return () => { gone = true; off(); };
+      },
+      async signIn(password) {
+        if (!password) throw fail("auth/invalid", "Escribí la clave.");
+        const { au, auth } = await load();
+        try { await au.signInWithEmailAndPassword(auth, cfg.adminEmail, password); }
+        catch (err) { throw fail(err.code, authMsg(err.code)); }
+      },
+      async signOut() { const { au, auth } = await load(); await au.signOut(auth); },
+
+      subscribe(cb, onError) {
+        let reqs = null, days = null, gone = false, offs = [];
+        const push = () => { if (reqs && days) cb({ requests: reqs, days }); };
+        const bad = (err) => { console.error(err); if (onError) onError(err); };
+        load().then(({ fs, db }) => {
+          if (gone) return;
+          offs.push(fs.onSnapshot(fs.collection(db, "requests"), (snap) => {
+            reqs = snap.docs.map((d) => {
+              const x = d.data();
+              const t = x.createdAt && x.createdAt.toDate ? x.createdAt.toDate() : new Date();
+              return { id: d.id, name: x.name, phone: x.phone, guests: x.guests, checkIn: x.checkIn, checkOut: x.checkOut, days: x.days || [], status: x.status, createdAt: t.toISOString() };
+            }).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+            reqCache = reqs; push();
+          }, bad));
+          offs.push(fs.onSnapshot(fs.collection(db, "days"), (snap) => {
+            days = {}; snap.forEach((d) => { days[d.id] = d.data(); });
+            dayCache = days; push();
+          }, bad));
+        }).catch(bad);
+        return () => { gone = true; offs.forEach((f) => f()); };
+      },
+
+      async setBlocked(dates, blocked) {
+        const { fs, db } = await load();
+        const batch = fs.writeBatch(db);
+        let changed = 0, skipped = 0;
+        dates.forEach((d) => {
+          const x = dayCache[d];
+          if (x && x.state !== "blocked") { skipped++; return; }
+          if (blocked && !x) { batch.set(fs.doc(db, "days", d), { state: "blocked" }); changed++; }
+          else if (!blocked && x) { batch.delete(fs.doc(db, "days", d)); changed++; }
+        });
+        if (changed) { try { await batch.commit(); } catch (err) { throw writeFail(err); } }
+        return { changed, skipped };
+      },
+
+      async setStatus(id, status) {
+        const r = reqCache.find((x) => x.id === id);
+        if (!r) throw fail("not-found", "No se encontró el pedido.");
+        const { fs, db } = await load();
+        const batch = fs.writeBatch(db);
+        const mine = r.days.length ? r.days : range(r.checkIn, r.checkOut);
+        if (status === "rejected") {
+          mine.forEach((d) => { const x = dayCache[d]; if (x && x.requestId === id) batch.delete(fs.doc(db, "days", d)); });
+        } else {
+          mine.forEach((d) => { const x = dayCache[d]; if (x && x.requestId !== id) throw conflict(d); });
+          mine.forEach((d) => batch.set(fs.doc(db, "days", d), { state: status, requestId: id }));
+        }
+        batch.update(fs.doc(db, "requests", id), { status });
+        try { await batch.commit(); } catch (err) { throw writeFail(err); }
+      },
+
+      async remove(id) {
+        const r = reqCache.find((x) => x.id === id);
+        const { fs, db } = await load();
+        const batch = fs.writeBatch(db);
+        (r ? r.days : []).forEach((d) => { const x = dayCache[d]; if (x && x.requestId === id) batch.delete(fs.doc(db, "days", d)); });
+        batch.delete(fs.doc(db, "requests", id));
+        try { await batch.commit(); } catch (err) { throw writeFail(err); }
+      },
+    };
+  }
+
+  const useFirebase = Boolean(cfg.firebase && cfg.firebase.apiKey) && !String(cfg.firebase.apiKey).startsWith("PEGAR");
+  window.AdminService = useFirebase ? firebaseService() : demoService;
+})();
+
+
+</script>
+  <script>
+(function () {
+  "use strict";
+  const cfg = window.OASIS;
+  const svc = window.AdminService;
+  const $ = (s) => document.querySelector(s);
+
+  /* ---------- Utilidades ---------- */
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const pad = (n) => String(n).padStart(2, "0");
+  const ymd = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
+  function range(a, b) {
+    const out = [];
+    for (let t = Date.parse(a + "T00:00:00Z"), e = Date.parse(b + "T00:00:00Z"); t <= e; t += 86400000) out.push(new Date(t).toISOString().slice(0, 10));
+    return out;
+  }
+  const fmt = (s, o) => new Date(s + "T00:00:00Z").toLocaleDateString("es-PY", { timeZone: "UTC", ...o });
+  const fmtShort = (s) => fmt(s, { weekday: "short", day: "numeric", month: "short" });
+  const fmtLong = (s) => fmt(s, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const fmtRange = (a, b) => (a === b ? fmtShort(a) : `${fmtShort(a)} al ${fmtShort(b)}`);
+  const phoneFmt = (d) => (/^595\d{9}$/.test(d) ? `+595 ${d.slice(3, 6)} ${d.slice(6, 9)} ${d.slice(9)}` : "+" + d);
+  const waUrl = (phone, text) => `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  function ago(iso) {
+    const m = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
+    if (m < 1) return "recién";
+    if (m < 60) return `hace ${m} min`;
+    const h = Math.round(m / 60);
+    if (h < 24) return `hace ${h} h`;
+    const d = Math.round(h / 24);
+    return `hace ${d} ${d === 1 ? "día" : "días"}`;
+  }
+  const STATUS = { pending: "Esperando pago", confirmed: "Reserva confirmada", rejected: "Rechazada" };
+
+  /* ---------- Estado ---------- */
+  let reqs = [];
+  let days = {};
+  let filter = "pending";
+  let query = "";
+  const today = svc.today();
+  let year = Number(today.slice(0, 4)), month = Number(today.slice(5, 7)) - 1;
+  const minMonth = { y: year, m: month };
+  let unsubData = null;
+
+  /* ---------- Avisos ---------- */
+  let toastTimer = null;
+  function toast(text, opts = {}) {
+    const t = $("#toast"), a = $("#toastAction");
+    $("#toastText").textContent = text;
+    t.classList.toggle("is-error", Boolean(opts.error));
+    if (opts.action) {
+      a.hidden = false;
+      a.textContent = opts.action.label;
+      a.onclick = async () => { hideToast(); try { await opts.action.fn(); } catch (_) { /* nada */ } };
+    } else { a.hidden = true; a.onclick = null; }
+    t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(hideToast, opts.action ? 7000 : 4000);
+  }
+  function hideToast() { $("#toast").hidden = true; }
+
+  /* ---------- Confirmaciones ---------- */
+  function ask({ title, text, ok, danger }) {
+    const dlg = $("#dlg");
+    $("#dlgTitle").textContent = title;
+    $("#dlgText").textContent = text;
+    $("#dlgOk").textContent = ok;
+    dlg.classList.toggle("is-danger", Boolean(danger));
+    return new Promise((resolve) => {
+      dlg.addEventListener("close", () => resolve(dlg.returnValue === "ok"), { once: true });
+      dlg.returnValue = "cancel";
+      dlg.showModal();
+    });
+  }
+
+  /* ---------- Ingreso ---------- */
+  function showBoot(text, isError) {
+    $("#boot").hidden = false;
+    $("#boot").textContent = text;
+    $("#boot").style.color = isError ? "var(--danger)" : "";
+  }
+  function showLogin() {
+    if (unsubData) { unsubData(); unsubData = null; }
+    $("#boot").hidden = true;
+    $("#app").hidden = true;
+    $("#login").hidden = false;
+    $("#logout").hidden = true;
+    $("#userEmail").textContent = "";
+    $("#loginDemo").hidden = !svc.demo;
+    document.title = "Panel · Quinta Oasis";
+  }
+  function showApp() {
+    $("#boot").hidden = true;
+    $("#login").hidden = true;
+    $("#app").hidden = false;
+    $("#logout").hidden = false;
+    $("#demoBanner").hidden = !svc.demo;
+    if (!unsubData) {
+      unsubData = svc.subscribe((s) => { reqs = s.requests; days = s.days; render(); }, (err) => {
+        // Si la base rechaza la lectura (sesión inválida), se vuelve a pedir la clave.
+        if (err && err.code === "permission-denied") {
+          svc.signOut().catch(() => {});
+          showLogin();
+          $("#loginMsg").innerHTML = '<div class="notice notice--err">La sesión venció. Ingresá la clave de nuevo.</div>';
+        } else {
+          showBoot("No se pudieron cargar los datos. Revisá tu conexión y recargá la página.", true);
+          $("#app").hidden = true;
+        }
+      });
+    }
+  }
+
+  $("#loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = $("#loginMsg"), btn = e.submitter || $("#loginForm button[type=submit]");
+    msg.innerHTML = "";
+    btn.disabled = true;
+    try {
+      await svc.signIn($("#pw").value);
+      $("#pw").value = "";
+    } catch (err) {
+      msg.innerHTML = `<div class="notice notice--err">${esc(err.message || "No se pudo ingresar.")}</div>`;
+    } finally { btn.disabled = false; }
+  });
+  $("#logout").addEventListener("click", () => svc.signOut());
+  svc.onAuth((user) => (user ? showApp() : showLogin()),
+    () => showBoot("No se pudo conectar. Revisá tu conexión y recargá la página.", true));
+
+  /* ---------- Pestañas del celular ---------- */
+  function setPane(p) {
+    $("#app").dataset.pane = p;
+    document.querySelectorAll("#seg button").forEach((b) => {
+      const on = b.dataset.pane === p;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-selected", String(on));
+    });
+  }
+  $("#seg").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setPane(b.dataset.pane); });
+
+  /* ---------- Dibujo ---------- */
+  function render() {
+    const nP = reqs.filter((r) => r.status === "pending").length;
+    const confirmed = reqs.filter((r) => r.status === "confirmed");
+    $("#nPending").textContent = nP;
+    $("#nConfirmed").textContent = confirmed.length;
+    const next = confirmed.map((r) => r.checkOut >= today ? r.checkIn : null).filter(Boolean).sort()[0];
+    $("#nextDate").textContent = next ? fmt(next < today ? today : next, { day: "numeric", month: "short" }).replace(".", "") : "—";
+    const sc = $("#segCount");
+    sc.hidden = !nP;
+    sc.textContent = nP;
+    document.title = (nP ? `(${nP}) ` : "") + "Panel · Quinta Oasis";
+    renderCalendar();
+    renderList();
+  }
+
+  function dayInfo(s) {
+    if (s < today) return { cls: "past", label: "pasado", disabled: true };
+    const x = days[s];
+    if (!x) return { cls: "free", label: "libre. Tocá para marcarlo como ocupado" };
+    const r = reqs.find((q) => q.id === x.requestId);
+    if (x.state === "confirmed") return { cls: "confirmed", label: `reservado por ${r ? r.name : ""}` };
+    if (x.state === "pending") return { cls: "pending", label: `pedido de ${r ? r.name : ""}, esperando pago` };
+    return { cls: "blocked", label: "ocupado. Tocá para liberarlo" };
+  }
+
+  function renderCalendar() {
+    const first = new Date(Date.UTC(year, month, 1));
+    const n = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    const raw = first.toLocaleDateString("es-PY", { month: "long", year: "numeric", timeZone: "UTC" });
+    const title = raw.charAt(0).toUpperCase() + raw.slice(1);
+    const atMin = year === minMonth.y && month === minMonth.m;
+    let h = `<div class="cal__head">
+      <button type="button" class="cal__nav" data-nav="-1" aria-label="Mes anterior" ${atMin ? "disabled" : ""}>‹</button>
+      <div class="cal__title" aria-live="polite">${title}</div>
+      <button type="button" class="cal__nav" data-nav="1" aria-label="Mes siguiente">›</button>
+    </div><div class="cal__grid">`;
+    ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].forEach((d) => (h += `<div class="cal__dow" aria-hidden="true">${d}</div>`));
+    for (let i = 0; i < first.getUTCDay(); i++) h += "<div></div>";
+    for (let d = 1; d <= n; d++) {
+      const s = ymd(year, month, d);
+      const i = dayInfo(s);
+      h += `<button type="button" class="day day--${i.cls}${s === today ? " day--today" : ""}" data-date="${s}" ${i.disabled ? "disabled" : ""} aria-label="${fmtLong(s)}, ${esc(i.label)}">${d}</button>`;
+    }
+    $("#calendar").innerHTML = h + "</div>";
+  }
+
+  function renderList() {
+    const plain = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    const q = plain(query.trim());
+    const qDigits = q.replace(/\D/g, "");
+    const items = reqs.filter((r) => (filter === "all" || r.status === filter) &&
+      (!q || plain(r.name).includes(q) || (qDigits && r.phone.includes(qDigits))));
+    document.querySelectorAll("#chips .chip").forEach((c) => c.classList.toggle("is-on", c.dataset.f === filter));
+    if (!items.length) {
+      const msg = q ? ["No encontramos pedidos", "Probá con otro nombre o número."]
+        : filter === "pending" ? ["No hay pedidos esperando pago", "Cuando un cliente pida una fecha, aparece acá."]
+        : ["No hay pedidos en esta lista", "Cambiá el filtro para ver otros."];
+      $("#list").innerHTML = `<div class="empty"><b>${msg[0]}</b>${msg[1]}</div>`;
+      return;
+    }
+    $("#list").innerHTML = items.map(reqHtml).join("");
+  }
+
+  function waMessage(r) {
+    const first = r.name.split(" ")[0];
+    const dates = fmtRange(r.checkIn, r.checkOut);
+    return r.status === "confirmed"
+      ? `Hola ${first}! Recibimos tu pago. Tu reserva de la Quinta Oasis para ${dates} está CONFIRMADA. ¡Te esperamos!`
+      : `Hola ${first}! Te escribimos de la Quinta Oasis. Recibimos tu pedido para ${dates} (${r.guests} personas). Para confirmar la reserva necesitamos el pago. ¿Nos avisás cuando lo realices? ¡Gracias!`;
+  }
+
+  function reqHtml(r) {
+    const nDays = range(r.checkIn, r.checkOut).length;
+    const id = esc(r.id);
+    const wa = `<a class="btn btn--wa btn--small" href="${waUrl(r.phone, waMessage(r))}" target="_blank" rel="noopener">${r.status === "confirmed" ? "WhatsApp: avisar confirmación" : "WhatsApp: pedir pago"}</a>`;
+    let acts = wa;
+    if (r.status === "pending") {
+      acts += `<button type="button" class="btn btn--dark btn--small" data-act="confirm" data-id="${id}">Pago recibido</button>`;
+      acts += `<button type="button" class="btn btn--danger btn--small" data-act="reject" data-id="${id}">Rechazar</button>`;
+    } else if (r.status === "confirmed") {
+      acts += `<button type="button" class="btn btn--danger btn--small" data-act="cancel" data-id="${id}">Cancelar reserva</button>`;
+    } else {
+      acts += `<button type="button" class="btn btn--quiet btn--small" data-act="reopen" data-id="${id}">Reabrir</button>`;
+      acts += `<button type="button" class="btn btn--danger btn--small" data-act="delete" data-id="${id}">Eliminar</button>`;
+    }
+    return `<article class="req" id="req-${id}">
+      <div class="req__top">
+        <div><h3>${esc(r.name)}</h3><p class="req__meta">${esc(phoneFmt(r.phone))} · ${esc(r.guests)} ${r.guests === 1 ? "persona" : "personas"} · ${ago(r.createdAt)}</p></div>
+        <span class="badge badge--${esc(r.status)}">${esc(STATUS[r.status] || r.status)}</span>
+      </div>
+      <p class="req__dates">${esc(fmtRange(r.checkIn, r.checkOut))} <span>· ${nDays} ${nDays === 1 ? "día" : "días"}</span></p>
+      <div class="req__actions">${acts}</div>
+    </article>`;
+  }
+
+  /* ---------- Acciones sobre pedidos ---------- */
+  $("#chips").addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (c) { filter = c.dataset.f; renderList(); } });
+  $("#search").addEventListener("input", (e) => { query = e.target.value; renderList(); });
+
+  async function run(promise, okText) {
+    try { await promise; if (okText) toast(okText); }
+    catch (err) { toast(err.code === "conflict" ? err.message : "No se pudo guardar el cambio. Probá de nuevo.", { error: true }); }
+  }
+
+  $("#list").addEventListener("click", async (e) => {
+    const b = e.target.closest("[data-act]");
+    if (!b) return;
+    const r = reqs.find((x) => x.id === b.dataset.id);
+    if (!r) return;
+    const dates = fmtRange(r.checkIn, r.checkOut);
+    const act = b.dataset.act;
+    if (act === "confirm") {
+      if (await ask({ title: "¿Ya recibiste el pago?", text: `Al confirmar, ${dates} queda reservado para ${r.name} y se marca como ocupado en el calendario de los clientes.`, ok: "Sí, pago recibido" }))
+        run(svc.setStatus(r.id, "confirmed"), "Reserva confirmada");
+    } else if (act === "reject") {
+      if (await ask({ title: "¿Rechazar este pedido?", text: `Los días ${dates} vuelven a quedar libres para otros clientes.`, ok: "Sí, rechazar", danger: true }))
+        run(svc.setStatus(r.id, "rejected"), "Pedido rechazado");
+    } else if (act === "cancel") {
+      if (await ask({ title: "¿Cancelar esta reserva?", text: `Los días ${dates} vuelven a quedar libres. Acordate de avisarle a ${r.name}.`, ok: "Sí, cancelar", danger: true }))
+        run(svc.setStatus(r.id, "rejected"), "Reserva cancelada");
+    } else if (act === "reopen") {
+      run(svc.setStatus(r.id, "pending"), "Pedido reabierto");
+    } else if (act === "delete") {
+      if (await ask({ title: "¿Eliminar para siempre?", text: `Se borra el pedido de ${r.name}. No se puede deshacer.`, ok: "Sí, eliminar", danger: true }))
+        run(svc.remove(r.id), "Pedido eliminado");
+    }
+  });
+
+  /* ---------- Calendario ---------- */
+  function goToRequest(id) {
+    filter = "all"; query = ""; $("#search").value = "";
+    setPane("requests");
+    renderList();
+    const el = document.getElementById("req-" + id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+  }
+
+  $("#calendar").addEventListener("click", async (e) => {
+    const nav = e.target.closest("[data-nav]");
+    if (nav && !nav.disabled) {
+      month += Number(nav.dataset.nav);
+      if (month < 0) { month = 11; year--; }
+      if (month > 11) { month = 0; year++; }
+      renderCalendar();
+      return;
+    }
+    const day = e.target.closest(".day");
+    if (!day || day.disabled) return;
+    const s = day.dataset.date;
+    const x = days[s];
+    if (x && x.requestId) return goToRequest(x.requestId);
+    const wasBlocked = Boolean(x);
+    try {
+      await svc.setBlocked([s], !wasBlocked);
+      toast(wasBlocked ? "Día liberado" : "Día marcado como ocupado", { action: { label: "Deshacer", fn: () => svc.setBlocked([s], wasBlocked) } });
+    } catch (_) { toast("No se pudo guardar el cambio. Probá de nuevo.", { error: true }); }
+  });
+
+  $("#from").min = $("#to").min = today;
+  async function setRange(block) {
+    const from = $("#from").value, to = $("#to").value || from;
+    if (!from) return toast("Elegí la fecha “Desde”.", { error: true });
+    if (to < from) return toast("“Hasta” no puede ser antes de “Desde”.", { error: true });
+    const list = range(from, to).filter((d) => d >= today);
+    if (!list.length) return toast("Esas fechas ya pasaron.", { error: true });
+    if (list.length > 400) return toast("Elegí un rango de hasta 400 días.", { error: true });
+    try {
+      const r = await svc.setBlocked(list, block);
+      const skip = r.skipped ? ` (${r.skipped} tienen un pedido y no se tocaron)` : "";
+      toast(`${r.changed} ${r.changed === 1 ? "día" : "días"} ${block ? "marcados como ocupados" : "liberados"}${skip}`);
+    } catch (_) { toast("No se pudo guardar el cambio. Probá de nuevo.", { error: true }); }
+  }
+  $("#blockRange").addEventListener("click", () => setRange(true));
+  $("#freeRange").addEventListener("click", () => setRange(false));
+})();
+
+</script>
+</body>
+</html>
